@@ -34,6 +34,59 @@
       background-color: darkgray !important;
     }
   </style>
+  <!-- Some JavaScript to change the stop lights -->
+  <script>
+    const lights = {
+      red: null, yellow: null, green: null
+    };
+    const lightOrder = ['red', 'yellow', 'green'];
+
+    function onLoad() {
+      lights.red = document.getElementById('red');
+      lights.yellow = document.getElementById('yellow');
+      lights.green = document.getElementById('green');
+      changeLights('red');
+    }
+
+    function inferLightState() {
+      if (lights.red.classList.contains("light-off")) {
+        if (lights.yellow.classList.contains("light-off")) {
+          return "green";
+        } else {
+          return "yellow";
+        }
+      } else {
+        return "red";
+      }
+    }
+
+    function nextLightState() {
+      const currentLight = inferLightState();
+      const currentLightIndex = lightOrder.indexOf(currentLight);
+      const nextLightIndex = (currentLightIndex + 1) % lightOrder.length;
+      return lightOrder[nextLightIndex];
+    }
+
+    function changeLights(choice = null) {
+      const lightChoice = choice ?? nextLightState();
+      switch (lightChoice) {
+        case "red":
+          lights.red.classList.remove("light-off");
+          lights.yellow.classList.add("light-off");
+          lights.green.classList.add("light-off");
+          break;
+        case "yellow":
+          lights.red.classList.add("light-off");
+          lights.yellow.classList.remove("light-off");
+          lights.green.classList.add("light-off");
+          break;
+        default:
+          lights.red.classList.add("light-off");
+          lights.yellow.classList.add("light-off");
+          lights.green.classList.remove("light-off");
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -41,8 +94,9 @@
   <div id="stoplight">
     <span id="red" class="stoplight-light red-light">&nbsp;</span>
     <span id="yellow" class="stoplight-light yellow-light light-off">&nbsp;</span>
-    <span id="green" class="stoplight-light green-light">&nbsp;</span>
+    <span id="green" class="stoplight-light green-light light-off">&nbsp;</span>
   </div>
+  <button onclick="changeLights()" onload="onLoad()">Change Lights</button>
 </body>
 
 </html>
