@@ -23,9 +23,11 @@
     .red-light {
       background-color: red;
     }
+
     .yellow-light {
       background-color: yellow;
     }
+
     .green-light {
       background-color: green;
     }
@@ -36,16 +38,23 @@
   </style>
   <!-- Some JavaScript to change the stop lights -->
   <script>
+          const StopLightTimeout = 5000;
     const lights = {
       red: null, yellow: null, green: null
     };
     const lightOrder = ['red', 'yellow', 'green'];
+
+          function lightTimer() {
+            setTimeout(lightTimer, StopLightTimeout);
+            changeLights();
+          }
 
     function onLoad() {
       lights.red = document.getElementById('red');
       lights.yellow = document.getElementById('yellow');
       lights.green = document.getElementById('green');
       changeLights('red');
+      lightTimer()
     }
 
     function inferLightState() {
