@@ -4,9 +4,11 @@
   <title>A stoplight which changes!</title>
   <style>
     #stoplight {
-      width: 300px;
-      height: 325px;
-      border: 1px solid rgba(0, 0, 0, 0.616);
+
+      width: 106px;
+      height: 312px;
+      border: 1px solid black;
+      background: darkorange;
       position: relative;
     }
 
@@ -15,6 +17,22 @@
       height: 100px;
       display: block;
       border-radius: 50%;
+      border: black 1px solid;
+      margin: 2px;
+    }
+
+    .red-light {
+      background-color: red;
+    }
+    .yellow-light {
+      background-color: yellow;
+    }
+    .green-light {
+      background-color: green;
+    }
+
+    .light-off {
+      background-color: darkgray !important;
     }
   </style>
 </head>
@@ -22,9 +40,9 @@
 <body>
   <!-- A stoplight web page with three spans for the different colors -->
   <div id="stoplight">
-    <span id="blue" class="stoplight-light" style="background-color: rgba(4, 0, 255, 0.384);">&nbsp;</span>
-    <span id="limegreen" class="stoplight-light" style="background-color: rgba(51, 255, 0, 0.856);">&nbsp;</span>
-    <span id="purple" class="stoplight-light" style="background-color: rgb(128, 0, 111);">&nbsp;</span>
+    <span id="red" class="stoplight-light red-light">&nbsp;</span>
+    <span id="yellow" class="stoplight-light yellow-light light-off">&nbsp;</span>
+    <span id="green" class="stoplight-light green-light">&nbsp;</span>
   </div>
 </body>
 
